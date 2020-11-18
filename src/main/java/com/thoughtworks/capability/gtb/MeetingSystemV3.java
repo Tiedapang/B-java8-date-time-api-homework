@@ -31,8 +31,11 @@ public class MeetingSystemV3 {
       int newDayOfYear = tomorrow.getDayOfYear();
       meetingTime = meetingTime.withDayOfYear(newDayOfYear);
 
+      LocalDateTime meetingTimeWithZone = meetingTime.atZone(ZoneId.of("Asia/Shanghai"))
+              .withZoneSameInstant(ZoneId.of("America/Chicago")).toLocalDateTime();
+
       // 格式化新会议时间
-      String showTimeStr = formatter.format(meetingTime);
+      String showTimeStr = formatter.format(meetingTimeWithZone);
       System.out.println(showTimeStr);
     } else {
       System.out.println("会议还没开始呢");
